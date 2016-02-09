@@ -15,6 +15,14 @@ public class LetterMapper extends Mapper<LongWritable, Text, Text, IntWritable> 
     /*
      * TODO implement
      */
+    /*Convert the value to a String object*/
+    String line = value.toString();
+    for (String word : line.split("\\W+")) {
+      if (word.length() > 0) {
+        context.write(new Text(word.charAt(0)), new IntWritable(word.length()));
+      }
+    }
+
 
   }
 }

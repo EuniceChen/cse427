@@ -15,6 +15,14 @@ public class AverageReducer extends Reducer<Text, IntWritable, Text, DoubleWrita
     /*
      * TODO implement
      */
+    double sum = 0, wordCount = 0;
+    for(IntWritable value : values){
+    	sum += value.get();
+    	wordCount++;
+    }
+    context.write(key, new IntWritable(sum / wordCount * 1.0));
+    
+
 
   }
 }

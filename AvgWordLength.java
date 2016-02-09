@@ -34,6 +34,14 @@ public class AvgWordLength {
     /*
      * TODO implement
      */
+    FileInputFormat.setInputPaths(job, new Path(args[0]));
+    FileOutputFormat.setOutputPath(job, new Path(args[1]));
+
+    job.setMapperClass(WordMapper.class);
+    job.setReducerClass(SumReducer.class);
+
+    job.setOutputKeyClass(Text.class);
+    job.setOutputValueClass(IntWritable.class);
     
     /*
      * Start the MapReduce job and wait for it to finish.
